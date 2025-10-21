@@ -10,6 +10,16 @@ public class AudioManager : MonoBehaviour
     public AudioClip backgroundMusic;
     public AudioClip jumpSound;
 
+    private void Start()
+    {
+        musicSource.clip = backgroundMusic;
+        musicSource.Play();
+    }
+
+    public void PlaySoundEffect (AudioClip clip)
+    {
+        vfxSource.PlayOneShot(clip);
+    }
 
 
 

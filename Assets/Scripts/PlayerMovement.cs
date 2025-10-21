@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -15,10 +16,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform groundCheckPos;
     [SerializeField] Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     [SerializeField] LayerMask groundLayer;
+
+    AudioManager audiomanagerInstance;
     
     void Start()
     {
         playerRigidbody2d = GetComponent<Rigidbody2D>();
+        audiomanagerInstance = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void FixedUpdate()
@@ -38,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
             if (context.performed)
             {
                 playerRigidbody2d.linearVelocity = new Vector2(playerRigidbody2d.linearVelocityX, jumpForce);
+                audiomanagerInstance.PlaySoundEffect(audiomanagerInstance.jumpSound);
             }
         }     
     }
