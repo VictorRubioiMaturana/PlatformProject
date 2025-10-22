@@ -2,24 +2,22 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    private Camera mainCamera;
-    private Vector3 cursosPosition;
-    [SerializeField] GameObject pointer;
+    private Camera mainCamera; //Reference to the main camera.
+    private Vector3 cursosPosition; //Position where the player will shoot or aim.
+    [SerializeField] GameObject pointer; //Pointer object to show the direction.
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        mainCamera = Camera.main;
+        mainCamera = Camera.main; //Get the main camera from the scene.
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)) //If left mouse button is pressed
         {
-            cursosPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            cursosPosition.z = transform.position.z;
+            cursosPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition); //Get the mouse position in world coordinates.
+            cursosPosition.z = transform.position.z; //Keep the z position same as player.
         }
-        pointer.transform.position = Vector3.MoveTowards(pointer.transform.position, cursosPosition, 100f);
+        pointer.transform.position = Vector3.MoveTowards(pointer.transform.position, cursosPosition, 100f); //Move the pointer to the target position.
     }
 }

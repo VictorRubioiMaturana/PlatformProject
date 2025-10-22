@@ -1,27 +1,21 @@
 using UnityEngine;
-
 public class BucketController : MonoBehaviour
 {
-    Animator bucketAnimator;
-    BoxCollider2D triggerCollider;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Animator bucketAnimator; //Animator to control bucket animations.
+    BoxCollider2D triggerCollider; //Collider used as trigger to detect player.
+
     void Start()
     {
-        bucketAnimator = GetComponent<Animator>();
-        triggerCollider = GetComponent<BoxCollider2D>();
-    }
-
-    void Update()
-    {
-        
+        bucketAnimator = GetComponent<Animator>(); //Get the Animator component from the bucket.
+        triggerCollider = GetComponent<BoxCollider2D>(); //Get the BoxCollider2D component.
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player")) //If the player enters the trigger
         {
-            triggerCollider.enabled = false;
-            bucketAnimator.SetBool("IsFalling", true);
+            triggerCollider.enabled = false; //Disable the trigger to avoid multiple activations.
+            bucketAnimator.SetBool("IsFalling", true); //Set the animation bool to make the bucket fall.
         }
     }
 }
